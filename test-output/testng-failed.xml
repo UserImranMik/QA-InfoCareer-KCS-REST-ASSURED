@@ -5,7 +5,7 @@
     <classes>
       <class name="com.catering.test.Cateringtest">
         <methods>
-          <include name="paymentGateway"/>
+          <include name="loginAndSelectItemsForUsers"/>
         </methods>
       </class> <!-- com.catering.test.Cateringtest -->
     </classes>

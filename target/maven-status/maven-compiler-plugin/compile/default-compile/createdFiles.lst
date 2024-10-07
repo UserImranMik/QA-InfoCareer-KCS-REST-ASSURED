@@ -1,0 +1,6 @@
+com\catering\api\Endpoints.class
+com\catering\utility\Apiutils.class
+com\catering\properties\Configproperties.class
+com\catering\annotation\FrameworkAnnotation.class
+com\catering\enumeration\Authors.class
+com\catering\enumeration\CategoryType.class

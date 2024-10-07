@@ -1,25 +1,22 @@
 package com.catering.utility;
 
+import java.io.FileNotFoundException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.catering.properties.Configproperties;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 public class Apiutils {
-	
-    protected void setup() {
-    	
-        String URI = Configproperties.getProperty("URI");
-        RestAssured.baseURI = URI;
-    }
-	
-	 static {
-	        
-		 RestAssured.baseURI = Configproperties.getProperty("URI");	    
-	 }
 	
 
   protected Response getRequest(String basePath, Map<String, Object> params) {
@@ -48,11 +45,10 @@ public class Apiutils {
   protected Response loginRequest(String basePath, Map<String, String> loginCredentials) {
 	  
 	  return RestAssured.given()
-			  .basePath(basePath)
-			  .contentType("application/json")
+			  .contentType(ContentType.JSON)
 			  .body(loginCredentials)
 			  .when()
-			  .post()
+			  .post(basePath)
 			  .then()
 			  .extract()
 			  .response();
@@ -74,22 +70,56 @@ public class Apiutils {
 
   protected Response paymentGatewayRequest(String basePath, Map<String, Object> params, String keyId, String keySecret) {
 	  
+	  JSONObject jsonParams = new JSONObject(params);
+	  
 	    return RestAssured.given()
-	        .auth()
-	        .preemptive().basic(keyId, keySecret) 
-	        .queryParams(params)  
-	        .body(basePath)  
-	        .when()
-	        .post()  
-	        .then()
-	        .extract()
-	        .response();
+	            .auth()
+	            .preemptive()
+	            .basic(keyId, keySecret)  // Use basic auth directly
+	            .contentType(ContentType.HTML) // Explicitly set the correct charset
+	            .body(jsonParams.toString())  // Send form parameters
+	            .log().all()  // Log request details
+	            .when()
+	            .post(basePath)
+	            .then()
+	            .log().all()  // Log response details
+	            .extract()
+	            .response();
+	        
 	}
-
  
   
-
+  protected Response fetchPaymentDetails(String basePath, String keyId, String keySecret) {
+     
+	  return RestAssured.given()
+          .auth()
+          .preemptive()
+          .basic(keyId, keySecret)
+          .when()
+          .get(basePath)
+          .then()
+          .extract()
+          .response();
+  }
   
+  protected Response selectItems(String basePath, String token, 
+          Map<String, Object> queryParams, 
+          JSONArray productList) throws JsonProcessingException {
+	  
+	  return RestAssured.given()
+			  .header("Authorization", token)              
+              .contentType(ContentType.JSON)   
+              .queryParams(queryParams)                     
+              .body(productList.toString())                            
+              .log().all()
+              .when()
+			  .post(basePath)
+			  .then()
+			  .log()
+			  .all()
+			  .extract()
+			  .response();  
+      }
   
   
 

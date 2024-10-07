@@ -1,0 +1,413 @@
+10:50:38.867 [main] INFO  - Base URI set to: https://foodqa.infocareerindia.com
+10:50:38.927 [main] INFO  - Base URI set to: https://foodqa.infocareerindia.com
+10:50:38.927 [main] INFO  - Base Path: /food/api/v1/user/login
+10:50:38.934 [main] INFO  - Attempting to login with: {password=1111, phone=9944194693}
+10:50:40.899 [main] INFO  - The token is: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWQiOjMsInJvbGUiOiJVU0VSIiwicGhvbmUiOjk5NDQxOTQ2OTMsImlhdCI6MTcyODI3ODQzOSwiZXhwIjoxNzI4MjgwMjM5fQ.pIOhTjTE-zGHra2gYnuZUt9IRwotJo-N2_kvd4EqRWw
+10:50:40.899 [main] INFO  - loginUser Test passed : All assertions are successful.
+10:50:40.899 [main] INFO  - User logged in
+10:50:40.973 [main] INFO  - The response body for Login is : {
+    "userId": 3,
+    "userName": "ANU",
+    "phone": 9944194693,
+    "emailId": null,
+    "password": "phElbKW8zjIyhpg1pWJmLw==",
+    "address": "Chennai",
+    "phoneOtp": 729818,
+    "emailOtp": 0,
+    "phoneVerified": true,
+    "emailVerified": false,
+    "role": {
+        "roleId": 2,
+        "roleName": "USER"
+    },
+    "key": "zfekQwBCoWOWMo/bkvsquzIyUqX8dQ7Jaovo5X6vMYg=",
+    "consentChkFlag": false,
+    "updatedDateTime": "2024-10-04T13:08:19.323674",
+    "location": {
+        "locationId": 1,
+        "locationName": "OMR",
+        "companyName": "IBM",
+        "qrCode": "iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQAAAACFI5MzAAABeElEQVR4Xu2WQW6DUAxEjVj8JUfgJnCxSEHiYslN/hFY/gXCnTENoKZddmglLAUpfhvLM/a3+U9hXxNbXOQijL9BspnV2R/NmK33Af8aNcEPyQ649D66L3JSrBm9mN1zWlhgdxJhWUieRrJVbFEffZITpz7+xKegtjflBCQ8yiQ/7+79fRLBFs0GkV6hJFBlqkMVDCsqw8SKCZ0Z+NZiVKzVE5pjaPGZ21JNYAePaohjQNzTalQUmJjTklAlPVnlo0GV25SoCLb0dHd2x1KQXR8R8djSpYI+Vk31YVPoCBsDPBg8elsbpiUWa6qnPgunZK9NRSKZYM9Vn7JvSxHhc0VfvJZE2j0qIh7/UVHYc1hTUpKjJ6hotm1itSQir/ZcuLm7vTsaklFPzVHBpuDEHnaVivjn7cLu8OmMkBLebx63y6oPDXMCSUjCJjilD3eVktCo2Nd4O/hwqYlTnzhfo0XJGVJiccNWdAg9etxiGvJ9XOQijP9JPgBmqYf3DWElYQAAAABJRU5ErkJggg==",
+        "lastUpdatedBy": 2,
+        "lastUpdatedDt": "2024-09-11T05:24:38.386043"
+    }
+}
+10:50:40.981 [main] INFO  - [{"quantity":10,"productId":1},{"quantity":5,"productId":2}]
+10:50:42.320 [main] INFO  - Validation successful! Company name is: HCL
+10:50:42.572 [main] INFO  - {
+    "razorpayDetailsId": 260,
+    "applicationFee": "6000",
+    "razorpayOrderId": "order_P61wNKtO7ddISC",
+    "notes": "notesorder_P61wNKtO7ddISC",
+    "theme": "#F37254",
+    "secretId": "rzp_test_8xlK20ea4017KA",
+    "merchantName": "Test",
+    "purchaseDescription": "TEST PURCHASES",
+    "customerName": "ANU",
+    "customerEmail": null,
+    "customerContact": 9944194693,
+    "orders": {
+        "id": 156,
+        "orderId": null,
+        "orderAmount": 60.0,
+        "gst": null,
+        "gstAmount": 0.0,
+        "totalAmount": 60.0,
+        "address": "Dummy",
+        "location": {
+            "locationId": 1,
+            "locationName": "OMR",
+            "companyName": "IBM",
+            "qrCode": "iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQAAAACFI5MzAAABeElEQVR4Xu2WQW6DUAxEjVj8JUfgJnCxSEHiYslN/hFY/gXCnTENoKZddmglLAUpfhvLM/a3+U9hXxNbXOQijL9BspnV2R/NmK33Af8aNcEPyQ649D66L3JSrBm9mN1zWlhgdxJhWUieRrJVbFEffZITpz7+xKegtjflBCQ8yiQ/7+79fRLBFs0GkV6hJFBlqkMVDCsqw8SKCZ0Z+NZiVKzVE5pjaPGZ21JNYAePaohjQNzTalQUmJjTklAlPVnlo0GV25SoCLb0dHd2x1KQXR8R8djSpYI+Vk31YVPoCBsDPBg8elsbpiUWa6qnPgunZK9NRSKZYM9Vn7JvSxHhc0VfvJZE2j0qIh7/UVHYc1hTUpKjJ6hotm1itSQir/ZcuLm7vTsaklFPzVHBpuDEHnaVivjn7cLu8OmMkBLebx63y6oPDXMCSUjCJjilD3eVktCo2Nd4O/hwqYlTnzhfo0XJGVJiccNWdAg9etxiGvJ9XOQijP9JPgBmqYf3DWElYQAAAABJRU5ErkJggg==",
+            "lastUpdatedBy": 2,
+            "lastUpdatedDt": "2024-09-11T05:24:38.386043"
+        },
+        "paymentStatus": "PAY_PENDING",
+        "userLogin": {
+            "userId": 3,
+            "userName": "ANU",
+            "phone": 9944194693,
+            "emailId": null,
+            "password": "phElbKW8zjIyhpg1pWJmLw==",
+            "address": "Chennai",
+            "phoneOtp": 729818,
+            "emailOtp": 0,
+            "phoneVerified": true,
+            "emailVerified": false,
+            "role": {
+                "roleId": 2,
+                "roleName": "USER"
+            },
+            "key": "zfekQwBCoWOWMo/bkvsquzIyUqX8dQ7Jaovo5X6vMYg=",
+            "consentChkFlag": false,
+            "updatedDateTime": "2024-10-04T13:08:19.323674",
+            "location": {
+                "locationId": 1,
+                "locationName": "OMR",
+                "companyName": "IBM",
+                "qrCode": "iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQAAAACFI5MzAAABeElEQVR4Xu2WQW6DUAxEjVj8JUfgJnCxSEHiYslN/hFY/gXCnTENoKZddmglLAUpfhvLM/a3+U9hXxNbXOQijL9BspnV2R/NmK33Af8aNcEPyQ649D66L3JSrBm9mN1zWlhgdxJhWUieRrJVbFEffZITpz7+xKegtjflBCQ8yiQ/7+79fRLBFs0GkV6hJFBlqkMVDCsqw8SKCZ0Z+NZiVKzVE5pjaPGZ21JNYAePaohjQNzTalQUmJjTklAlPVnlo0GV25SoCLb0dHd2x1KQXR8R8djSpYI+Vk31YVPoCBsDPBg8elsbpiUWa6qnPgunZK9NRSKZYM9Vn7JvSxHhc0VfvJZE2j0qIh7/UVHYc1hTUpKjJ6hotm1itSQir/ZcuLm7vTsaklFPzVHBpuDEHnaVivjn7cLu8OmMkBLebx63y6oPDXMCSUjCJjilD3eVktCo2Nd4O/hwqYlTnzhfo0XJGVJiccNWdAg9etxiGvJ9XOQijP9JPgBmqYf3DWElYQAAAABJRU5ErkJggg==",
+                "lastUpdatedBy": 2,
+                "lastUpdatedDt": "2024-09-11T05:24:38.386043"
+            }
+        },
+        "orderedDateTime": "2024-09-24T09:36:48.383448",
+        "shipped": false,
+        "delivered": false,
+        "deliveryStatus": {
+            "statusId": 1,
+            "statusDescription": "Not Yet Dispatched"
+        }
+    },
+    "razorpayDateTime": "2024-10-07T05:20:41.706191959"
+}
+10:50:42.674 [main] INFO  - notes : notesorder_P61wNKtO7ddISC
+10:50:42.695 [main] INFO  - The created product is : {
+    "razorpayDetailsId": 260,
+    "applicationFee": "6000",
+    "razorpayOrderId": "order_P61wNKtO7ddISC",
+    "notes": "notesorder_P61wNKtO7ddISC",
+    "theme": "#F37254",
+    "secretId": "rzp_test_8xlK20ea4017KA",
+    "merchantName": "Test",
+    "purchaseDescription": "TEST PURCHASES",
+    "customerName": "ANU",
+    "customerEmail": null,
+    "customerContact": 9944194693,
+    "orders": {
+        "id": 156,
+        "orderId": null,
+        "orderAmount": 60.0,
+        "gst": null,
+        "gstAmount": 0.0,
+        "totalAmount": 60.0,
+        "address": "Dummy",
+        "location": {
+            "locationId": 1,
+            "locationName": "OMR",
+            "companyName": "IBM",
+            "qrCode": "iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQAAAACFI5MzAAABeElEQVR4Xu2WQW6DUAxEjVj8JUfgJnCxSEHiYslN/hFY/gXCnTENoKZddmglLAUpfhvLM/a3+U9hXxNbXOQijL9BspnV2R/NmK33Af8aNcEPyQ649D66L3JSrBm9mN1zWlhgdxJhWUieRrJVbFEffZITpz7+xKegtjflBCQ8yiQ/7+79fRLBFs0GkV6hJFBlqkMVDCsqw8SKCZ0Z+NZiVKzVE5pjaPGZ21JNYAePaohjQNzTalQUmJjTklAlPVnlo0GV25SoCLb0dHd2x1KQXR8R8djSpYI+Vk31YVPoCBsDPBg8elsbpiUWa6qnPgunZK9NRSKZYM9Vn7JvSxHhc0VfvJZE2j0qIh7/UVHYc1hTUpKjJ6hotm1itSQir/ZcuLm7vTsaklFPzVHBpuDEHnaVivjn7cLu8OmMkBLebx63y6oPDXMCSUjCJjilD3eVktCo2Nd4O/hwqYlTnzhfo0XJGVJiccNWdAg9etxiGvJ9XOQijP9JPgBmqYf3DWElYQAAAABJRU5ErkJggg==",
+            "lastUpdatedBy": 2,
+            "lastUpdatedDt": "2024-09-11T05:24:38.386043"
+        },
+        "paymentStatus": "PAY_PENDING",
+        "userLogin": {
+            "userId": 3,
+            "userName": "ANU",
+            "phone": 9944194693,
+            "emailId": null,
+            "password": "phElbKW8zjIyhpg1pWJmLw==",
+            "address": "Chennai",
+            "phoneOtp": 729818,
+            "emailOtp": 0,
+            "phoneVerified": true,
+            "emailVerified": false,
+            "role": {
+                "roleId": 2,
+                "roleName": "USER"
+            },
+            "key": "zfekQwBCoWOWMo/bkvsquzIyUqX8dQ7Jaovo5X6vMYg=",
+            "consentChkFlag": false,
+            "updatedDateTime": "2024-10-04T13:08:19.323674",
+            "location": {
+                "locationId": 1,
+                "locationName": "OMR",
+                "companyName": "IBM",
+                "qrCode": "iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQAAAACFI5MzAAABeElEQVR4Xu2WQW6DUAxEjVj8JUfgJnCxSEHiYslN/hFY/gXCnTENoKZddmglLAUpfhvLM/a3+U9hXxNbXOQijL9BspnV2R/NmK33Af8aNcEPyQ649D66L3JSrBm9mN1zWlhgdxJhWUieRrJVbFEffZITpz7+xKegtjflBCQ8yiQ/7+79fRLBFs0GkV6hJFBlqkMVDCsqw8SKCZ0Z+NZiVKzVE5pjaPGZ21JNYAePaohjQNzTalQUmJjTklAlPVnlo0GV25SoCLb0dHd2x1KQXR8R8djSpYI+Vk31YVPoCBsDPBg8elsbpiUWa6qnPgunZK9NRSKZYM9Vn7JvSxHhc0VfvJZE2j0qIh7/UVHYc1hTUpKjJ6hotm1itSQir/ZcuLm7vTsaklFPzVHBpuDEHnaVivjn7cLu8OmMkBLebx63y6oPDXMCSUjCJjilD3eVktCo2Nd4O/hwqYlTnzhfo0XJGVJiccNWdAg9etxiGvJ9XOQijP9JPgBmqYf3DWElYQAAAABJRU5ErkJggg==",
+                "lastUpdatedBy": 2,
+                "lastUpdatedDt": "2024-09-11T05:24:38.386043"
+            }
+        },
+        "orderedDateTime": "2024-09-24T09:36:48.383448",
+        "shipped": false,
+        "delivered": false,
+        "deliveryStatus": {
+            "statusId": 1,
+            "statusDescription": "Not Yet Dispatched"
+        }
+    },
+    "razorpayDateTime": "2024-10-07T05:20:41.706191959"
+}
+10:50:42.713 [main] INFO  - The order id for the created order is : order_P61wNKtO7ddISC
+10:50:42.713 [main] INFO  - createOrderRequest Test passed : All assertions are successful.
+10:50:42.715 [main] INFO  - Encoded Credentials: cnpwX3Rlc3RfOHhsSzIwZWE0MDE3S0E6RXJRU3RwY3lZOTh6eEdNR3JUQ2xFc2Z5
+10:50:43.506 [main] INFO  - {
+    "accept_partial": false,
+    "amount": 6000,
+    "amount_paid": 0,
+    "cancelled_at": 0,
+    "created_at": 1728278442,
+    "currency": "INR",
+    "customer": {
+        "contact": "9944194693",
+        "name": "ANU"
+    },
+    "description": "",
+    "expire_by": 0,
+    "expired_at": 0,
+    "first_min_partial_amount": 0,
+    "id": "plink_P61wOEybkRO9PY",
+    "notes": null,
+    "notify": {
+        "email": false,
+        "sms": false,
+        "whatsapp": false
+    },
+    "payments": null,
+    "reference_id": "",
+    "reminder_enable": false,
+    "reminders": [
+        
+    ],
+    "short_url": "https://rzp.io/rzp/QLuIG6Uh",
+    "status": "created",
+    "updated_at": 1728278442,
+    "upi_link": false,
+    "user_id": "",
+    "whatsapp_link": false
+}
+10:50:43.506 [main] INFO  - Base URI set to: https://foodqa.infocareerindia.com
+10:50:43.506 [main] INFO  - Base Path: /food/api/v1/user/login
+10:50:43.507 [main] INFO  - Attempting to login with: {password=1111, phone=9944194693}
+10:50:43.633 [main] INFO  - The token is: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiaWQiOjMsInJvbGUiOiJVU0VSIiwicGhvbmUiOjk5NDQxOTQ2OTMsImlhdCI6MTcyODI3ODQ0MiwiZXhwIjoxNzI4MjgwMjQyfQ.A7U9xZk_YzYj0oqLss1kRGXD_g29c0NdpPA7WbKzwmE
+10:50:43.634 [main] INFO  - loginUser Test passed : All assertions are successful.
+10:50:43.634 [main] INFO  - User logged in
+10:50:43.635 [main] INFO  - The response body for Login is : {
+    "userId": 3,
+    "userName": "ANU",
+    "phone": 9944194693,
+    "emailId": null,
+    "password": "phElbKW8zjIyhpg1pWJmLw==",
+    "address": "Chennai",
+    "phoneOtp": 729818,
+    "emailOtp": 0,
+    "phoneVerified": true,
+    "emailVerified": false,
+    "role": {
+        "roleId": 2,
+        "roleName": "USER"
+    },
+    "key": "zfekQwBCoWOWMo/bkvsquzIyUqX8dQ7Jaovo5X6vMYg=",
+    "consentChkFlag": false,
+    "updatedDateTime": "2024-10-04T13:08:19.323674",
+    "location": {
+        "locationId": 1,
+        "locationName": "OMR",
+        "companyName": "IBM",
+        "qrCode": "iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQAAAACFI5MzAAABeElEQVR4Xu2WQW6DUAxEjVj8JUfgJnCxSEHiYslN/hFY/gXCnTENoKZddmglLAUpfhvLM/a3+U9hXxNbXOQijL9BspnV2R/NmK33Af8aNcEPyQ649D66L3JSrBm9mN1zWlhgdxJhWUieRrJVbFEffZITpz7+xKegtjflBCQ8yiQ/7+79fRLBFs0GkV6hJFBlqkMVDCsqw8SKCZ0Z+NZiVKzVE5pjaPGZ21JNYAePaohjQNzTalQUmJjTklAlPVnlo0GV25SoCLb0dHd2x1KQXR8R8djSpYI+Vk31YVPoCBsDPBg8elsbpiUWa6qnPgunZK9NRSKZYM9Vn7JvSxHhc0VfvJZE2j0qIh7/UVHYc1hTUpKjJ6hotm1itSQir/ZcuLm7vTsaklFPzVHBpuDEHnaVivjn7cLu8OmMkBLebx63y6oPDXMCSUjCJjilD3eVktCo2Nd4O/hwqYlTnzhfo0XJGVJiccNWdAg9etxiGvJ9XOQijP9JPgBmqYf3DWElYQAAAABJRU5ErkJggg==",
+        "lastUpdatedBy": 2,
+        "lastUpdatedDt": "2024-09-11T05:24:38.386043"
+    }
+}
+10:50:43.635 [main] INFO  - [{"quantity":10,"productId":1},{"quantity":5,"productId":2}]
+10:50:43.961 [main] INFO  - Validation successful! Company name is: HCL
+10:50:44.161 [main] INFO  - {
+    "razorpayDetailsId": 261,
+    "applicationFee": "6000",
+    "razorpayOrderId": "order_P61wP7JudUEDOh",
+    "notes": "notesorder_P61wP7JudUEDOh",
+    "theme": "#F37254",
+    "secretId": "rzp_test_8xlK20ea4017KA",
+    "merchantName": "Test",
+    "purchaseDescription": "TEST PURCHASES",
+    "customerName": "ANU",
+    "customerEmail": null,
+    "customerContact": 9944194693,
+    "orders": {
+        "id": 156,
+        "orderId": null,
+        "orderAmount": 60.0,
+        "gst": null,
+        "gstAmount": 0.0,
+        "totalAmount": 60.0,
+        "address": "Dummy",
+        "location": {
+            "locationId": 1,
+            "locationName": "OMR",
+            "companyName": "IBM",
+            "qrCode": "iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQAAAACFI5MzAAABeElEQVR4Xu2WQW6DUAxEjVj8JUfgJnCxSEHiYslN/hFY/gXCnTENoKZddmglLAUpfhvLM/a3+U9hXxNbXOQijL9BspnV2R/NmK33Af8aNcEPyQ649D66L3JSrBm9mN1zWlhgdxJhWUieRrJVbFEffZITpz7+xKegtjflBCQ8yiQ/7+79fRLBFs0GkV6hJFBlqkMVDCsqw8SKCZ0Z+NZiVKzVE5pjaPGZ21JNYAePaohjQNzTalQUmJjTklAlPVnlo0GV25SoCLb0dHd2x1KQXR8R8djSpYI+Vk31YVPoCBsDPBg8elsbpiUWa6qnPgunZK9NRSKZYM9Vn7JvSxHhc0VfvJZE2j0qIh7/UVHYc1hTUpKjJ6hotm1itSQir/ZcuLm7vTsaklFPzVHBpuDEHnaVivjn7cLu8OmMkBLebx63y6oPDXMCSUjCJjilD3eVktCo2Nd4O/hwqYlTnzhfo0XJGVJiccNWdAg9etxiGvJ9XOQijP9JPgBmqYf3DWElYQAAAABJRU5ErkJggg==",
+            "lastUpdatedBy": 2,
+            "lastUpdatedDt": "2024-09-11T05:24:38.386043"
+        },
+        "paymentStatus": "PAY_PENDING",
+        "userLogin": {
+            "userId": 3,
+            "userName": "ANU",
+            "phone": 9944194693,
+            "emailId": null,
+            "password": "phElbKW8zjIyhpg1pWJmLw==",
+            "address": "Chennai",
+            "phoneOtp": 729818,
+            "emailOtp": 0,
+            "phoneVerified": true,
+            "emailVerified": false,
+            "role": {
+                "roleId": 2,
+                "roleName": "USER"
+            },
+            "key": "zfekQwBCoWOWMo/bkvsquzIyUqX8dQ7Jaovo5X6vMYg=",
+            "consentChkFlag": false,
+            "updatedDateTime": "2024-10-04T13:08:19.323674",
+            "location": {
+                "locationId": 1,
+                "locationName": "OMR",
+                "companyName": "IBM",
+                "qrCode": "iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQAAAACFI5MzAAABeElEQVR4Xu2WQW6DUAxEjVj8JUfgJnCxSEHiYslN/hFY/gXCnTENoKZddmglLAUpfhvLM/a3+U9hXxNbXOQijL9BspnV2R/NmK33Af8aNcEPyQ649D66L3JSrBm9mN1zWlhgdxJhWUieRrJVbFEffZITpz7+xKegtjflBCQ8yiQ/7+79fRLBFs0GkV6hJFBlqkMVDCsqw8SKCZ0Z+NZiVKzVE5pjaPGZ21JNYAePaohjQNzTalQUmJjTklAlPVnlo0GV25SoCLb0dHd2x1KQXR8R8djSpYI+Vk31YVPoCBsDPBg8elsbpiUWa6qnPgunZK9NRSKZYM9Vn7JvSxHhc0VfvJZE2j0qIh7/UVHYc1hTUpKjJ6hotm1itSQir/ZcuLm7vTsaklFPzVHBpuDEHnaVivjn7cLu8OmMkBLebx63y6oPDXMCSUjCJjilD3eVktCo2Nd4O/hwqYlTnzhfo0XJGVJiccNWdAg9etxiGvJ9XOQijP9JPgBmqYf3DWElYQAAAABJRU5ErkJggg==",
+                "lastUpdatedBy": 2,
+                "lastUpdatedDt": "2024-09-11T05:24:38.386043"
+            }
+        },
+        "orderedDateTime": "2024-09-24T09:36:48.383448",
+        "shipped": false,
+        "delivered": false,
+        "deliveryStatus": {
+            "statusId": 1,
+            "statusDescription": "Not Yet Dispatched"
+        }
+    },
+    "razorpayDateTime": "2024-10-07T05:20:43.339198348"
+}
+10:50:44.199 [main] INFO  - notes : notesorder_P61wP7JudUEDOh
+10:50:44.201 [main] INFO  - The created product is : {
+    "razorpayDetailsId": 261,
+    "applicationFee": "6000",
+    "razorpayOrderId": "order_P61wP7JudUEDOh",
+    "notes": "notesorder_P61wP7JudUEDOh",
+    "theme": "#F37254",
+    "secretId": "rzp_test_8xlK20ea4017KA",
+    "merchantName": "Test",
+    "purchaseDescription": "TEST PURCHASES",
+    "customerName": "ANU",
+    "customerEmail": null,
+    "customerContact": 9944194693,
+    "orders": {
+        "id": 156,
+        "orderId": null,
+        "orderAmount": 60.0,
+        "gst": null,
+        "gstAmount": 0.0,
+        "totalAmount": 60.0,
+        "address": "Dummy",
+        "location": {
+            "locationId": 1,
+            "locationName": "OMR",
+            "companyName": "IBM",
+            "qrCode": "iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQAAAACFI5MzAAABeElEQVR4Xu2WQW6DUAxEjVj8JUfgJnCxSEHiYslN/hFY/gXCnTENoKZddmglLAUpfhvLM/a3+U9hXxNbXOQijL9BspnV2R/NmK33Af8aNcEPyQ649D66L3JSrBm9mN1zWlhgdxJhWUieRrJVbFEffZITpz7+xKegtjflBCQ8yiQ/7+79fRLBFs0GkV6hJFBlqkMVDCsqw8SKCZ0Z+NZiVKzVE5pjaPGZ21JNYAePaohjQNzTalQUmJjTklAlPVnlo0GV25SoCLb0dHd2x1KQXR8R8djSpYI+Vk31YVPoCBsDPBg8elsbpiUWa6qnPgunZK9NRSKZYM9Vn7JvSxHhc0VfvJZE2j0qIh7/UVHYc1hTUpKjJ6hotm1itSQir/ZcuLm7vTsaklFPzVHBpuDEHnaVivjn7cLu8OmMkBLebx63y6oPDXMCSUjCJjilD3eVktCo2Nd4O/hwqYlTnzhfo0XJGVJiccNWdAg9etxiGvJ9XOQijP9JPgBmqYf3DWElYQAAAABJRU5ErkJggg==",
+            "lastUpdatedBy": 2,
+            "lastUpdatedDt": "2024-09-11T05:24:38.386043"
+        },
+        "paymentStatus": "PAY_PENDING",
+        "userLogin": {
+            "userId": 3,
+            "userName": "ANU",
+            "phone": 9944194693,
+            "emailId": null,
+            "password": "phElbKW8zjIyhpg1pWJmLw==",
+            "address": "Chennai",
+            "phoneOtp": 729818,
+            "emailOtp": 0,
+            "phoneVerified": true,
+            "emailVerified": false,
+            "role": {
+                "roleId": 2,
+                "roleName": "USER"
+            },
+            "key": "zfekQwBCoWOWMo/bkvsquzIyUqX8dQ7Jaovo5X6vMYg=",
+            "consentChkFlag": false,
+            "updatedDateTime": "2024-10-04T13:08:19.323674",
+            "location": {
+                "locationId": 1,
+                "locationName": "OMR",
+                "companyName": "IBM",
+                "qrCode": "iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQAAAACFI5MzAAABeElEQVR4Xu2WQW6DUAxEjVj8JUfgJnCxSEHiYslN/hFY/gXCnTENoKZddmglLAUpfhvLM/a3+U9hXxNbXOQijL9BspnV2R/NmK33Af8aNcEPyQ649D66L3JSrBm9mN1zWlhgdxJhWUieRrJVbFEffZITpz7+xKegtjflBCQ8yiQ/7+79fRLBFs0GkV6hJFBlqkMVDCsqw8SKCZ0Z+NZiVKzVE5pjaPGZ21JNYAePaohjQNzTalQUmJjTklAlPVnlo0GV25SoCLb0dHd2x1KQXR8R8djSpYI+Vk31YVPoCBsDPBg8elsbpiUWa6qnPgunZK9NRSKZYM9Vn7JvSxHhc0VfvJZE2j0qIh7/UVHYc1hTUpKjJ6hotm1itSQir/ZcuLm7vTsaklFPzVHBpuDEHnaVivjn7cLu8OmMkBLebx63y6oPDXMCSUjCJjilD3eVktCo2Nd4O/hwqYlTnzhfo0XJGVJiccNWdAg9etxiGvJ9XOQijP9JPgBmqYf3DWElYQAAAABJRU5ErkJggg==",
+                "lastUpdatedBy": 2,
+                "lastUpdatedDt": "2024-09-11T05:24:38.386043"
+            }
+        },
+        "orderedDateTime": "2024-09-24T09:36:48.383448",
+        "shipped": false,
+        "delivered": false,
+        "deliveryStatus": {
+            "statusId": 1,
+            "statusDescription": "Not Yet Dispatched"
+        }
+    },
+    "razorpayDateTime": "2024-10-07T05:20:43.339198348"
+}
+10:50:44.216 [main] INFO  - The order id for the created order is : order_P61wP7JudUEDOh
+10:50:44.221 [main] INFO  - createOrderRequest Test passed : All assertions are successful.
+10:50:44.222 [main] INFO  - Encoded Credentials: cnpwX3Rlc3RfOHhsSzIwZWE0MDE3S0E6RXJRU3RwY3lZOTh6eEdNR3JUQ2xFc2Z5
+10:50:44.848 [main] INFO  - {
+    "accept_partial": false,
+    "amount": 6000,
+    "amount_paid": 0,
+    "cancelled_at": 0,
+    "created_at": 1728278443,
+    "currency": "INR",
+    "customer": {
+        "contact": "9944194693",
+        "name": "ANU"
+    },
+    "description": "",
+    "expire_by": 0,
+    "expired_at": 0,
+    "first_min_partial_amount": 0,
+    "id": "plink_P61wPhtX4URMEn",
+    "notes": null,
+    "notify": {
+        "email": false,
+        "sms": false,
+        "whatsapp": false
+    },
+    "payments": null,
+    "reference_id": "",
+    "reminder_enable": false,
+    "reminders": [
+        
+    ],
+    "short_url": "https://rzp.io/rzp/6os6vDZm",
+    "status": "created",
+    "updated_at": 1728278443,
+    "upi_link": false,
+    "user_id": "",
+    "whatsapp_link": false
+}

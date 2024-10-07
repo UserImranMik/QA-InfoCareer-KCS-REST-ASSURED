@@ -4,15 +4,33 @@ import static org.hamcrest.Matchers.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import io.restassured.http.ContentType;
+import io.restassured.http.Cookies;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import static io.restassured.RestAssured.given;
+import java.nio.charset.StandardCharsets; // Ensure you have this import
+import java.util.ArrayList;
+import java.util.Base64; // Import the built-in Java Base64 encoder
+import java.util.HashMap;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.collections4.map.HashedMap;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -29,54 +47,122 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class Cateringtest extends Apiutils {
+public class Cateringtest extends Apiutils {
 	
-	private static final String SECRET_ID = "rzp_test_fvYUjpmIHqB5nx";
-	   
-	private static final String SECRET_KEY = "j7d8lkf1RqAs3ni8Ngt4g8bC";
+    private String authToken;
+    
+    private static Logger logger = LogManager.getLogger(Cateringtest.class);
+    
+    // Logger for JSON logging (optional)
+    private static final Logger jsonLogger = LogManager.getLogger("jsonLogger");
+    
+    @BeforeClass
+    public void setup() throws Exception {
+      
+        Properties properties = new Properties();
+        FileInputStream inputStream = new FileInputStream("config.properties");
+        try {
+			properties.load(inputStream);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+
+        String baseURI = properties.getProperty("baseURI");
+        if (baseURI != null && !baseURI.isEmpty()) {
+            RestAssured.baseURI = baseURI;
+            logger.info("Base URI set to: " + baseURI);
+        } else {
+        	 logger.error("Exception occured", new Exception("Base URI is missing in the config.properties file."));
+        }
+
+        inputStream.close();
+    }
 	
+	@Test
+	public void loginAndSelectItemsForUsers() throws Exception {
+
+	    // Define users
+	    String[][] users = {
+	    		
+	    	{"9944194693", "1111"},
+	    	{"9944194693", "1111"}
+	    	//{"9876543210", "1212"}     
+	    };
+
+	    for (String[] user : users) {
+	        String phoneNumber = user[0];
+	        String passKey = user[1];
+	        
+	          authToken = null;
+	          
+	          // Step 1; baseURI config
+	          setup();
+			
+			  // Step 2: Login 
+	          loginUser(phoneNumber, passKey);
+			  
+			  // Step 3: Select Items 
+	          selectItems(phoneNumber);
+			  
+			  // Step 4: Create order
+	          createOrderRequest(phoneNumber);
+			  
+			  // Step 4: Test payment
+	          testPayment(phoneNumber);		 	 			
+	    }
+	}
 	
 	@FrameworkAnnotation(authors = Authors.USER_1, category = {CategoryType.Black_Box_Testing})
 	@Test(description = "Validate the login response for POST Request")
-	public void loginUser() throws Exception {
+	public void loginUser(String phoneNumber, String passKey) throws Exception {
 		
 		String basePath = Endpoints.loginUser;
+		 logger.info("Base Path: " + basePath);
 		
 		Properties properties = new Properties();
         FileInputStream inputStream = null;       
 		
 		try {
-		
+			
 	        inputStream = new FileInputStream("config.properties");
             properties.load(inputStream);
-           
-			Map<String, String> loginCredentials = new HashedMap<String, String>();
-			loginCredentials.put("phone", "9944194693");
-			loginCredentials.put("password", "1111");
-			
-			Response response = loginRequest(basePath, loginCredentials);
-			
-			response.then().statusCode(200);
-			
-			String tokens = response.getHeader("Authorization");
-			System.out.println("The token is : " + tokens);
-			
-            properties.setProperty("authToken", tokens);
+            	
+            	Map<String, String> loginCredentials = new HashedMap<String, String>();
+    			loginCredentials.put("phone", phoneNumber);
+    			loginCredentials.put("password", passKey);
+    			
+    			 logger.info("Attempting to login with: " + loginCredentials);
+    			Response response = loginRequest(basePath, loginCredentials);
+    			
+    		    if (response.getStatusCode() != 200) {
+    		      
+    		        String errorMessage = response.getBody().asString(); 
+    		        logger.error("Error occurred: " + errorMessage);
+    		        logger.info(response.prettyPrint());
+    		        logger.error("Exception occurred", new Exception("Login failed for user: " + phoneNumber + ". Status code: " + response.getStatusCode() + ". Response: " + errorMessage));
+    		    }
+    	        
+    	        // Store the token in the class-level variable
+                authToken = response.getHeader("Authorization");
+                logger.info("The token is: " + authToken);
+                
+                if (authToken == null || authToken.isEmpty()) {
+                    throw new Exception("Authorization token is missing or empty for user " + phoneNumber);
+                }
+    			
+                logger.info("loginUser Test passed : All assertions are successful."); 
+                logger.info("User logged in");
+                logger.info("The response body for Login is : " + response.prettyPrint());
             
-            FileOutputStream outputStream = new FileOutputStream("config.properties");
-			properties.store(outputStream, null);
-			outputStream.close();
-			
-			System.out.println("loginUser Test passed : All assertions are successful.");
-			
 		} catch (AssertionError e) {
 			
-			System.out.println("Assertion failed loginUser : " + e.getMessage());
+			logger.error("Assertion failed loginUser : " + e.getMessage());
 			throw e;			
 		
 		} catch (Exception e) {
 			
-			System.out.println("Test failed loginUser : " + e.getMessage());
+			logger.error("Test failed loginUser : " + e.getMessage());
 			throw e;
 		}
 		
@@ -184,11 +270,73 @@ public final class Cateringtest extends Apiutils {
         }
 	
 	}
+	
+	
+	@FrameworkAnnotation(authors = Authors.USER_1, category = {CategoryType.Black_Box_Testing})
+	@Test(description = "Validate the item selection response for POST Request and company name 'HCL'.")
+	public void selectItems(String phoneNumber) throws Exception {
+		
+		     Properties properties = new Properties();
+		     FileInputStream inputStream = null;
+		
+		try {
+			
+			 inputStream = new FileInputStream("config.properties");
+			 properties.load(inputStream);
+			 
+			 String basePath = Endpoints.selectOrder;
+			 
+			    // Create products array
+	            JSONArray productList = new JSONArray();
+	           
+	           // Add product 1
+	            JSONObject productOne = new JSONObject();
+	            productOne.put("productId", 1);
+	            productOne.put("quantity", 10);
+	            productList.put(productOne);
+	            
+	           // Add product 2
+	            JSONObject productTwo = new JSONObject();
+	            productTwo.put("productId", 2);
+	            productTwo.put("quantity", 5);
+	            productList.put(productTwo);   
+			 
+	            logger.info(productList);
+	            
+	            // Create query parameters
+	            Map<String, Object> queryParams = new HashMap<>();
+	            queryParams.put("userId", 29);
+	            queryParams.put("locationId", 2);
+		
+		   Response response = selectItems(basePath, authToken, queryParams, productList);		   
+		   
+		   int statusCode = response.getStatusCode();
+		   
+		     if(statusCode == 200) {
+		    	 
+		  // Validate if the "companyName" inside "location" is "HCL"
+		   String companyName = response.jsonPath().getString("orders.location.companyName");
+		   Assert.assertEquals(companyName, "HCL", "Company name does not match!");
+
+		    logger.info("Validation successful! Company name is: " + companyName);		    
+		 }
+		   
+		} catch (AssertionError e) {
+			
+			logger.error("Assertion failed createOrderRequest : " + e.getMessage());
+            throw e;
+		
+		} catch (Exception e) {
+			
+			logger.error("Test failed getAllLocation : " + e.getMessage());
+            throw e;
+		}
+	}
 
 	
 	 @FrameworkAnnotation(authors = Authors.USER_1, category = CategoryType.Black_Box_Testing)
-	 @Test(description = "Validate the JSON response body for POST Request")
-	 public void createOrderRequest() throws Exception {
+	 @Test(description = "Validate the order create response for POST Request and paymentStatus 'PAY_PENDING'.")
+	 public void createOrderRequest(String phoneNumber) throws Exception {
 		 
 		 Properties properties = new Properties();
 	     FileInputStream inputStream = null;
@@ -203,136 +351,160 @@ public final class Cateringtest extends Apiutils {
 			
 			inputStream = new FileInputStream("config.properties");
             properties.load(inputStream);
- 		
- 		    String authToken = properties.getProperty("authToken");
-			
+			 
 			Response response = getRequestWithAuth(basePath, user, authToken);
 			response.then().statusCode(200);
 			
-			//razorpayDetailsId, razorpayOrderId, notes
-			
-			/*
-			 * response.then() .body("applicationFee", equalTo("13000")) .body("theme",
-			 * equalTo("#F37254")) .body("secretId", equalTo("rzp_test_fvYUjpmIHqB5nx"))
-			 * .body("merchantName", equalTo("Test")) .body("purchaseDescription",
-			 * equalTo("TEST PURCHASES")) .body("customerName", equalTo("ANU"))
-			 * .body("customerEmail", equalTo(null)) .body("customerContact",
-			 * equalTo(9944194693L)) .body("orders.id", equalTo(1)) .body("orders.orderId",
-			 * equalTo("ORDER#20240830-0001")) .body("orders.orderAmount", equalTo(130.0f))
-			 * .body("orders.gst", equalTo(5.0f)) .body("orders.gstAmount", equalTo(0.0f))
-			 * .body("orders.totalAmount", equalTo(130.0f)) .body("orders.address",
-			 * equalTo("Dummy")) .body("orders.location.locationId", equalTo(1))
-			 * .body("orders.location.locationName", equalTo("OMR"))
-			 * .body("orders.location.companyName", equalTo("IBM")) // Excluding 'qrCode',
-			 * 'lastUpdatedBy', and 'lastUpdatedDt' fields .body("orders.paymentStatus",
-			 * equalTo("PAY_SUCCESS")) .body("orders.userLogin.userId", equalTo(3))
-			 * .body("orders.userLogin.userName", equalTo("ANU"))
-			 * .body("orders.userLogin.phone", equalTo(9944194693L))
-			 * .body("orders.userLogin.emailId", equalTo(null))
-			 * .body("orders.userLogin.password", equalTo("phElbKW8zjIyhpg1pWJmLw==")) //
-			 * Excluding 'key', 'phoneOtp', 'emailOtp', 'phoneVerified', 'emailVerified',
-			 * and 'key' .body("orders.userLogin.role.roleId", equalTo(2))
-			 * .body("orders.userLogin.role.roleName", equalTo("USER")) // Excluding nested
-			 * 'location' fields like 'qrCode' and 'lastUpdatedDt' .body("orders.shipped",
-			 * equalTo(false)) .body("orders.delivered", equalTo(false))
-			 * .body("orders.deliveryStatus", equalTo(null));
-			 */	
+			logger.info(response.prettyPrint());
 			
 			String paymentStatus = response.jsonPath().getString("orders.paymentStatus");
+			
+			String notes = response.jsonPath().getString("notes");
+			logger.info("notes : " + notes);
+		    
+		    FileOutputStream fileOutputStream = new FileOutputStream("config.properties");
+		    properties.store(fileOutputStream, null);
+		    properties.setProperty("notes", notes);
 			
 			if(paymentStatus.equals("PAY_PENDING")) {
 				
 				String responseBody = response.getBody().asPrettyString();
-				System.out.println("The create prodcut is : " + responseBody);	
+				logger.info("The created product is : " + responseBody);	
 			}
 			
-			System.out.println("createOrderRequest Test passed : All assertions are successful.");
+			String orderId = response.jsonPath().getString("razorpayOrderId");
+			
+			logger.info("The order id for the created order is : " + orderId);
+			
+			logger.info("createOrderRequest Test passed : All assertions are successful.");
 			
 		} catch (AssertionError e) {
 			
-			System.out.println("Assertion failed createOrderRequest : " + e.getMessage());
+			logger.error("Assertion failed createOrderRequest : " + e.getMessage());
             throw e;
 		
 		} catch (Exception e) {
 			
-			System.out.println("Test failed getAllLocation : " + e.getMessage());
+			logger.error("Test failed getAllLocation : " + e.getMessage());
             throw e;
 		}
 	}
 	 
-	 @FrameworkAnnotation(authors = Authors.USER_1, category = CategoryType.Black_Box_Testing)
-	 @Test(description = "")
-	 public void paymentGateway() throws Exception {
-		 
-		    String basePath = Endpoints.payment;
-		 
-		 try {
-			 
-            Map<String, Object> payLoad = new HashedMap<String, Object>();
-			 
-			 payLoad.put("amount", "100");  
-			 payLoad.put("currency", "INR");         // Currency type
-			 payLoad.put("email", "abc@gmail.com");  // Customer's email address
-			 payLoad.put("name", "Test");
-			 payLoad.put("desscription", "Test");
-			 payLoad.put("order_id", "order_Oy9dDxnGbeBBB8");
-			 payLoad.put("contact", "9944194693");   // Customer's phone number
-			 payLoad.put("method", "upi");           // Payment method (UPI)
-			 payLoad.put("vpa", "test@axisbank");     // Virtual Payment Address (VPA)
-			 			
-		Response response = paymentGatewayRequest(basePath, payLoad, SECRET_ID, SECRET_KEY);
-			 
-		System.out.println(response.getBody().asPrettyString());
-		
-		response.then().statusCode(200);
-		
-		/*
-		 * String body = response.getBody().asPrettyString();
-		 * System.out.println("The response body for payment is : " + body);
-		 */
-			 
-		 } catch (AssertionError e) {
-	            
-	            System.out.println("Assertion failed paymentGateway : " + e.getMessage());
-	            throw e; 
-	            
-	        } catch (Exception e) {
-	           
-	            System.out.println("Test failed paymentGateway : " + e.getMessage());
-	            throw e; 
-	        }
-		 
-	 }
 	 
 	 @Test
-	 public void getPayments() {
-	        // Base URL for Razorpay API
-	        String basePath = "https://api.razorpay.com/v1/payments/";
+	 public void getPayments() throws IOException {
+		 
+	         // Base URL for Razorpay API
+	         String basePath = "https://api.razorpay.com/v1/payments/";
 
-	        // Key ID and Secret Key for Basic Authentication
-	        String keyId = "rzp_test_fvYUjpmIHqB5nx";
-	        String keySecret = "j7d8lkf1RqAs3ni8Ngt4g8bC";
+	         Properties properties = new Properties();
+	         FileInputStream inputStream = new FileInputStream("config.properties");
+	         properties.load(inputStream);
+	       
+	         String keyId = properties.getProperty("RAZORPAY_KEY_ID");
+	         String keySecret = properties.getProperty("RAZORPAY_KEY_SECRET");
+	        
+	        String credentials = keyId + ":" + keySecret;
+	        String encodedCredentials = Base64.getEncoder().encodeToString(credentials.getBytes(StandardCharsets.UTF_8));
+	        logger.info("Encoded Credentials: " + encodedCredentials);
 
 	        // Perform GET request
 	        Response response = RestAssured.given()
-	            .auth()
-	            .preemptive()
-	            .basic(keyId, keySecret)  // Basic authentication
-	            .get(basePath)            // GET request to Razorpay endpoint
+	        	.header("Authorization", "Basic " + encodedCredentials)// Basic authentication
+	            .get(basePath)            
 	            .then()
-	            .statusCode(200)          // Expecting HTTP 200 OK
+	            .statusCode(200)          
 	            .extract()
 	            .response();
 
 	        // Print the response body
 	        String body = response.getBody().asPrettyString();
-	        System.out.println("Response Body: " + body);
+	        logger.info("Response Body: " + body);
 	    }
 	 
 	 
-	 
-	 
-	 
+	 @FrameworkAnnotation(authors = Authors.USER_1, category = CategoryType.Black_Box_Testing)
+	 @Test(description = "Test Payment")
+	 public void testPayment(String phoneNumber) throws Exception {
+		 
+		      Properties properties = new Properties();
+	          FileInputStream inputStream = null;       		
+
+	     try {
+	    	 
+	    	   inputStream = new FileInputStream("config.properties");
+	           properties.load(inputStream);
+
+	         // Base URI for Razorpay API
+	         RestAssured.baseURI = "https://api.razorpay.com/v1";
+
+	         // Payment details
+	         int amount = 6000; 
+	         String currency = "INR";
+	         boolean upiLink = true;
+
+	         // Create the payment details JSON
+	         JSONObject paymentDetails = new JSONObject();
+	         paymentDetails.put("amount", amount);
+	         paymentDetails.put("currency", currency);
+
+	         // Customer details
+	         JSONObject customerDetails = new JSONObject();
+	         customerDetails.put("name", "ANU");
+	         customerDetails.put("contact", "9944194693");
+
+	         // Attach customer details to payment details
+	         paymentDetails.put("customer", customerDetails);
+	         
+	        String notes = properties.getProperty("notes");
+
+	         paymentDetails.put("notes", notes);
+
+	         String keyId = properties.getProperty("RAZORPAY_KEY_ID");
+	         String keySecret = properties.getProperty("RAZORPAY_KEY_SECRET");
+
+	         String credentials = keyId + ":" + keySecret;
+	         String encodedCredentials = Base64.getEncoder().encodeToString(credentials.getBytes(StandardCharsets.UTF_8));
+	         logger.info("Encoded Credentials: " + encodedCredentials);
+	 		
+	         Response response = given()
+	             .header("Authorization", "Basic " + encodedCredentials)
+	             .header("Content-Type", "application/json")
+	             .header("Accept", "application/json")
+	        	 //.contentType(ContentType.JSON)
+	             .body(paymentDetails.toString())
+	             .log().all()  
+	             .when()
+	             .post("/payment_links")
+	             .then()
+	             .log().all()  
+	             .statusCode(200)
+	             .extract()
+	             .response();
+	         
+	         String status = response.jsonPath().getString("status");
+	         int responseAmount = response.jsonPath().getInt("amount");
+	         String responseCurrency = response.jsonPath().getString("currency");
+	         String customerName = response.jsonPath().getString("customer.name");
+	         String customerContact = response.jsonPath().getString("customer.contact");
+
+	         assertEquals(status, "created");
+	         assertEquals(responseAmount, amount);
+	         assertEquals(responseCurrency, currency);
+	         assertEquals(customerName, "ANU");
+	         assertEquals(customerContact, "9944194693");
+	         
+	         logger.info(response.prettyPrint());
+
+	     } catch (AssertionError e) {
+	    	 logger.error("Assertion failed paymentGateway: " + e.getMessage());
+	         throw e;
+	     } catch (Exception e) {
+	    	 logger.error("Test failed paymentGateway: " + e.getMessage());
+	         throw e;
+	     }
+	 }
+
 	 
 	 
 	 

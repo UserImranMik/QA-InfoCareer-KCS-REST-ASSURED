@@ -104,7 +104,7 @@
                     <div class="method-list-content passed suite-Suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="com.catering.test.Cateringtest" class="method navigator-link" hash-for-method="getPayments">getPayments</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="com.catering.test.Cateringtest" class="method navigator-link" hash-for-method="loginAndSelectItemsForUsers">loginAndSelectItemsForUsers</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Suite -->
@@ -127,9 +127,9 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="getPayments">
-                  </a> <!-- getPayments -->
-                  <span class="method-name">getPayments</span>
+                  <a name="loginAndSelectItemsForUsers">
+                  </a> <!-- loginAndSelectItemsForUsers -->
+                  <span class="method-name">loginAndSelectItemsForUsers</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -148,9 +148,12 @@
     &lt;classes&gt;
       &lt;class name=&quot;com.catering.test.Cateringtest&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;getPayments&quot;/&gt;
+          &lt;include name=&quot;loginAndSelectItemsForUsers&quot;/&gt;
           &lt;exclude name=&quot;loginUser&quot;/&gt;
+          &lt;exclude name=&quot;selectItems&quot;/&gt;
           &lt;exclude name=&quot;createOrderRequest&quot;/&gt;
+          &lt;exclude name=&quot;getPayments&quot;/&gt;
+          &lt;exclude name=&quot;testPayment&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- com.catering.test.Cateringtest --&gt;
     &lt;/classes&gt;
@@ -194,14 +197,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'getPayments')
+data.setCell(0, 1, 'loginAndSelectItemsForUsers')
 data.setCell(0, 2, 'com.catering.test.Cateringtest')
-data.setCell(0, 3, 2753);
+data.setCell(0, 3, 6273);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 seconds</span>
+              <span class="suite-total-time">Total running time: 6 seconds</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -216,21 +219,25 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">5 ignored methods</span>
+            <span class="header-content">7 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
               <span class="ignored-class-name">com.catering.test.Cateringtest</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">loginUser</span>
+                <span class="ignored-method-name">testPayment</span>
                 <br/>
                 <span class="ignored-method-name">getByLocation</span>
                 <br/>
                 <span class="ignored-method-name">getAllLocation</span>
                 <br/>
+                <span class="ignored-method-name">loginUser</span>
+                <br/>
+                <span class="ignored-method-name">selectItems</span>
+                <br/>
                 <span class="ignored-method-name">createOrderRequest</span>
                 <br/>
-                <span class="ignored-method-name">paymentGateway</span>
+                <span class="ignored-method-name">getPayments</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -243,9 +250,13 @@ return data;
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
               <div class="chronological-class-name">com.catering.test.Cateringtest</div> <!-- chronological-class-name -->
-              <div class="test-method">
-                <span class="method-name">getPayments</span>
+              <div class="configuration-class before">
+                <span class="method-name">setup</span>
                 <span class="method-start">0 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">loginAndSelectItemsForUsers</span>
+                <span class="method-start">776 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

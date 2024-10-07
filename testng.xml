@@ -10,9 +10,12 @@
      
      <methods>
      
+      <include name="loginAndSelectItemsForUsers"></include>
       <exclude name="loginUser"></exclude>
+      <exclude name="selectItems"></exclude>
       <exclude name="createOrderRequest"></exclude>
-      <include name="getPayments"></include>
+      <exclude name="getPayments"></exclude>
+      <exclude name="testPayment"></exclude>
      
      </methods>
      
