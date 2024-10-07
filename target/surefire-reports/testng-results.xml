@@ -2,16 +2,16 @@
 <testng-results ignored="7" total="8" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-10-07T10:50:38 IST" name="Suite" finished-at="2024-10-07T10:50:44 IST" duration-ms="6745">
+  <suite started-at="2024-10-07T14:55:26 IST" name="Suite" finished-at="2024-10-07T14:55:34 IST" duration-ms="8277">
     <groups>
     </groups>
-    <test started-at="2024-10-07T10:50:38 IST" name="Test" finished-at="2024-10-07T10:50:44 IST" duration-ms="6745">
+    <test started-at="2024-10-07T14:55:26 IST" name="Test" finished-at="2024-10-07T14:55:34 IST" duration-ms="8277">
       <class name="com.catering.test.Cateringtest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.catering.test.Cateringtest@1568159]" started-at="2024-10-07T10:50:38 IST" name="setup" finished-at="2024-10-07T10:50:38 IST" duration-ms="663" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.catering.test.Cateringtest@6c345c5f]" started-at="2024-10-07T14:55:26 IST" name="setup" finished-at="2024-10-07T14:55:27 IST" duration-ms="852" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="loginAndSelectItemsForUsers()[pri:0, instance:com.catering.test.Cateringtest@1568159]" started-at="2024-10-07T10:50:38 IST" name="loginAndSelectItemsForUsers" finished-at="2024-10-07T10:50:44 IST" duration-ms="5963" status="PASS">
+        <test-method signature="loginAndSelectItemsForUsers()[pri:0, instance:com.catering.test.Cateringtest@6c345c5f]" started-at="2024-10-07T14:55:27 IST" name="loginAndSelectItemsForUsers" finished-at="2024-10-07T14:55:34 IST" duration-ms="7236" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginAndSelectItemsForUsers -->

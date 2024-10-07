@@ -1,13 +1,26 @@
-FROM maven:3.8.7-openjdk-17 AS build
+# Use the Maven image to build the project
+FROM maven:3.9.5 AS build
 
+# Set the working directory
 WORKDIR /app
 
-# Copy the pom.xml and download dependencies
-COPY pom.xml ./
-RUN mvn dependency:go-offline
+# Copy the pom.xml and source code
+COPY pom.xml ./ 
+COPY src ./src 
 
-# Copy the project files
-COPY src ./src
+# Copy the config.properties file
+COPY config.properties /app/config.properties
 
-# Run the tests
-CMD ["mvn", "clean", "verify"]
+# Temporarily comment out the testng.xml line if needed
+COPY ./testng.xml /app/testng.xml
+
+# Run Maven to compile the project and run tests
+RUN mvn clean test
+
+# Final stage - Just for running the tests again if needed
+FROM maven:3.9.5
+WORKDIR /app
+COPY --from=build /app /app
+
+# Run tests
+CMD ["mvn", "test"]

@@ -1,0 +1,1 @@
+{"uuid":"3f166382-6e3d-43ef-a689-e77267a79599","name":"com.catering.test.Cateringtest","children":["b25d8dae-0330-4a8d-92d8-9b87305c7cb2"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1728284634595,"stop":1728284635445}],"afters":[],"start":1728284634557,"stop":1728284643072}

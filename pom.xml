@@ -5,6 +5,8 @@
 	<groupId>com.example.catering</groupId>
 	<artifactId>Kannan-Catering</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
 
 	<dependencies>
 
@@ -226,16 +228,9 @@
 				<version>2.22.2</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>D:/Kannan-Catering/Kannan-Catering/testng.xml</suiteXmlFile>
+						<suiteXmlFile>testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
-			</plugin>
-
-			<!-- Maven JAR Plugin for building the JAR file -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.2.0</version>
 			</plugin>
 
 		</plugins>
