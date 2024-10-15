@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="2" total="4" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-10-15T15:25:55 IST" name="Suite" finished-at="2024-10-15T15:26:01 IST" duration-ms="5415">
+    <groups>
+    </groups>
+    <test started-at="2024-10-15T15:25:55 IST" name="Test" finished-at="2024-10-15T15:26:01 IST" duration-ms="5415">
+      <class name="com.catering.test.ProductAdd">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.catering.test.ProductAdd@1da6ee17]" started-at="2024-10-15T15:25:55 IST" name="setup" finished-at="2024-10-15T15:25:56 IST" duration-ms="829" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="adminLogin()[pri:0, instance:com.catering.test.ProductAdd@1da6ee17]" started-at="2024-10-15T15:25:56 IST" name="adminLogin" finished-at="2024-10-15T15:25:59 IST" duration-ms="2501" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- adminLogin -->
+        <test-method signature="addMultipleProduct()[pri:0, instance:com.catering.test.ProductAdd@1da6ee17]" started-at="2024-10-15T15:25:59 IST" name="addMultipleProduct" finished-at="2024-10-15T15:26:01 IST" duration-ms="1913" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addMultipleProduct -->
+      </class> <!-- com.catering.test.ProductAdd -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
